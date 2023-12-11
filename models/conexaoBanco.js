@@ -5,11 +5,10 @@ const sequelize = new Sequelize("McDonalds","beellzzebuth","123poi",{
   dialect: 'mariadb'
 });
 
-sequelize.authenticate()
-.then(function(){
-console.log("Banco conectado com sucesso");
-}).catch(function(){
-console.log("Erro!! Falha de conexão!!",err);
+sequelize.authenticate().then(()=>{
+        console.log("Banco conectado com sucesso");
+}      ).catch(function(){
+        console.log("Erro!! Falha de conexão!!");
 });
 
 module.exports = sequelize;
