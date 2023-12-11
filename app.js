@@ -7,7 +7,7 @@ app.use(express.json());
 //const useRoutes = require('./models/routes');
 const conexaobanco = require('./models/conexaoBanco');
 const { err } = require('sequelize');
-app.use(express.static(path.join(__dirname, 'Website-Login')));
+app.use(express.static(path.join(__dirname, 'login')));
 
 
 app.get("/", async(req, res) => {
