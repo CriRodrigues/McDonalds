@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'Website-Login')));
 
 app.get("/", async(req, res) => {
     
-    res.sendFile(path.join(__dirname, 'Website-Login','index.html'));
+    res.sendFile(path.join(__dirname, 'login','index.html'));
 
 });
 
