@@ -6,7 +6,7 @@ const sequelize = new Sequelize("McDonalds","beellzzebuth","123poi",{
 });
 
 sequelize.authenticate().then(()=>{
-        console.log("Banco conectado com sucesso");
+        console.log("Banco conectado com sucesso!!!");
 }      ).catch(function(){
         console.log("Erro!! Falha de conexão!!");
 });

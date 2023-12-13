@@ -1,42 +1,23 @@
-const express = require('express');
-const { cliente } = require('./models/conexaoBanco');  // Importa o modelo User
-
+const {Router} = require('express');
+const {cliente}  = require('../models');
 const router = express.Router();
 
-// Rota POST para criar um novo usuário
-router.post("/conexaobanco/cadastro", async(req, res) => {
-    
-    const{ nome, cpf, telefone, email, senha} = req.body;
-    
-    if( !nome || !cpf || !telefone || !email || !senha)
-    {
-        console.log("Todos os dados são obrigatórios");
-    }
-    else
-    {
-        cliente.create({
-            matricula, 
-            nome, 
-            cpf, 
-            telefone, 
-            email, 
-            senha,
-            
-            }).than(() =>{
-                console.log("Cliente Cadastrado Com Sucesso!!");
-                res.status(201).send("Cliente Cadastrado Com Sucesso!!");
+router.get('/', async (req, res) =>{
+const cliente = await t_clientes.findAll();
+res.status(200).json(cliente);
+});
 
-            }).catch((err) => {
-                console.error("Cliente não Cadastrado!".err);
-                res.status(201).send("Erro de Cadastrado!!");
-            })
-        }
-            
-    });
-    
-    router.delete("/cliente", async(req, res) => {
-        res.send("app Delete");
-    
-    });
+router.get('/:matricula', async (req, res) =>{
+    const cliente = await t_clientes.findByPK(req.params.matricula);
+    res.status(200).json(cliente);
+});
 
-module.exports = router;  // Exporta o roteador para uso em outros arquivos
+router.post('/cadastro', async(req, res) => {
+   const { nome,cpf,email,senha } = req.body;
+   const novo_cliente = t_clientes.create({nome,cpf,email,senha});
+   
+   res.status(200).json({ message:'Cadastrado com sucesso'});
+
+});
+
+module.exports = router;  
